@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Option</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New Option</h1>
+        <form action="" method="post">
+            <label for="new_option">New Option:</label>
+            <input type="text" name="new_option" required>
+            <button type="submit">Add Option</button>
+        </form>
+        <a class="back-link" href="{{ url_for('poll') }}">Back to Poll</a>
+    </div>
+</body>
+</html>

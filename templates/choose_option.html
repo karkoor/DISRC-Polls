@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Option</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Choose an Option</h1>
+    <h3>Write your name with your first and last name, followed by your section.</h3>
+    <h4>Example: Kareem Kamal 12BB</h4>
+    <form action="" method="post">
+      <label for="voter_name">Enter your name:</label>
+      <input type="text" name="voter_name" required>
+      <br><br>
+      <button type="submit" class="submit-button">Vote</button>
+    </form>
+    <a class="back-link" href="{{ url_for('poll') }}">Back to Poll</a>
+  </div>
+</body>
+</html>
