@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unique Poll</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Choose Your DISRC Topics Here!</h1>  <!-- Updated Header -->
+    <div id="poll-options">
+      {% for option in options %}
+        <div class="option">
+          {% if option[2] == 0 %}
+            <a href="{{ url_for('choose', option_id=option[0]) }}">
+              <button class="vote-button">{{ option[1] }}</button>
+            </a>
+          {% else %}
+            <button class="vote-button disabled" disabled>
+              {{ option[1] }} (Chosen by {{ option[3] }})
+            </button>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <a class="add-option" href="{{ url_for('add') }}">Add New Option</a>
+  </div>
+</body>
+</html>
