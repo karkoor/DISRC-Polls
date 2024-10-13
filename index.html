@@ -3,29 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unique Poll</title>
+  <title>Vote for Your Option</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+  <style>
+    /* Basic reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Container styling */
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    /* Header and Subheader */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    h2 {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #666;
+    }
+
+    /* Input styling */
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+
+    /* Button styling */
+    .submit-button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #007bff;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background: #0056b3;
+    }
+
+    /* Back link styling */
+    .back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #f1f1f1;
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+  </style>
 </head>
 <body>
+  <!-- Main Container -->
   <div class="container">
-    <h1>Choose Your DISRC Topics Here!</h1>  <!-- Updated Header -->
-    <div id="poll-options">
-      {% for option in options %}
-        <div class="option">
-          {% if option[2] == 0 %}
-            <a href="{{ url_for('choose', option_id=option[0]) }}">
-              <button class="vote-button">{{ option[1] }}</button>
-            </a>
-          {% else %}
-            <button class="vote-button disabled" disabled>
-              {{ option[1] }} (Chosen by {{ option[3] }})
-            </button>
-          {% endif %}
-        </div>
-      {% endfor %}
-    </div>
-    <a class="add-option" href="{{ url_for('add') }}">Add New Option</a>
+    <h1>Choose an Option</h1>
+    <h2>Write your name with your first and last name, followed by your section. Example: Kareem Kamal 12BB</h2>
+    <!-- Voting Form -->
+    <form action="" method="post">
+      <label for="voter_name">Enter your name:</label>
+      <input type="text" name="voter_name" required>
+      
+      <label>Select an option:</label>
+      <select name="option_id" required>
+        {% for option in options %}
+          <option value="{{ option[0] }}">{{ option[1] }}</option>
+        {% endfor %}
+      </select>
+      
+      <button type="submit" class="submit-button">Vote</button>
+    </form>
+    <a class="back-link" href="{{ url_for('poll') }}">Back to Poll</a>
   </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 Your Website Name. All Rights Reserved.</p>
+  </footer>
 </body>
 </html>
