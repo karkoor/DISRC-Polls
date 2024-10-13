@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for
 DATABASE = 'poll.db'  # or your desired database filename
 
 app = Flask(__name__)
-
+@app.route('/')
 # Initialize the database
 def init_db():
     with sqlite3.connect(DATABASE) as conn:
